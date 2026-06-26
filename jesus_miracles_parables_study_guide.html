@@ -1,0 +1,472 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,650&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.mpg-root{
+  --ink:#1C1712;
+  --ink-soft:#2C241C;
+  --parchment:#F4EAD0;
+  --parchment-deep:#E9DAB3;
+  --parchment-line:#D8C396;
+  --gold:#A9782E;
+  --gold-bright:#D7A94B;
+  --rubric:#8A2E2A;
+  --text-main:#2B2114;
+  --text-soft:#6E5F49;
+  --text-faint:#8C7C61;
+  --radius:9px;
+  --serif-display:'Fraunces',ui-serif,Georgia,serif;
+  --serif-body:'Source Serif 4',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  font-family:var(--serif-body);
+  color:var(--text-main);
+  background:var(--parchment);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 1px 0 rgba(0,0,0,0.04);
+  max-width:1080px;
+  margin:0 auto;
+}
+.mpg-root *{box-sizing:border-box}
+.mpg-root :focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;border-radius:4px}
+
+/* ---------- HERO ---------- */
+.mpg-hero{
+  position:relative;
+  background:
+    radial-gradient(120% 140% at 50% -10%, #3A2E1E 0%, var(--ink) 55%, var(--ink) 100%);
+  color:var(--parchment);
+  padding:38px 24px 26px;
+  text-align:center;
+  border-bottom:1px solid rgba(215,169,75,0.35);
+}
+.mpg-eyebrow{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold-bright);margin:0 0 10px;font-weight:500;
+}
+.mpg-hero h1{
+  font-family:var(--serif-display);font-weight:560;font-size:clamp(26px,4vw,38px);
+  line-height:1.1;margin:0;letter-spacing:-0.01em;
+}
+.mpg-hero h1 em{font-style:italic;font-weight:440;color:var(--gold-bright);display:block;font-size:0.78em;margin-top:2px}
+.mpg-hero-sub{
+  max-width:480px;margin:14px auto 0;font-size:14px;line-height:1.65;color:#D8C7A4;
+}
+.mpg-ornament{display:flex;align-items:center;justify-content:center;gap:9px;width:150px;margin:20px auto 18px}
+.mpg-ornament span{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-bright))}
+.mpg-ornament span:last-child{background:linear-gradient(to left,transparent,var(--gold-bright))}
+.mpg-ornament i{width:6px;height:6px;background:var(--gold-bright);transform:rotate(45deg);display:block;flex-shrink:0}
+.mpg-stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.mpg-stat{
+  border:1px solid rgba(215,169,75,0.3);background:rgba(255,255,255,0.03);
+  border-radius:var(--radius);padding:8px 18px;min-width:84px;
+}
+.mpg-stat-n{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--gold-bright)}
+.mpg-stat-l{font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#B5A07A;margin-top:3px}
+
+/* ---------- TABS ---------- */
+.mpg-tabs{position:relative;display:flex;background:var(--ink-soft)}
+.mpg-tab{
+  flex:1;padding:13px 0;background:none;border:none;cursor:pointer;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;
+  color:#B9A57E;transition:color .2s;
+}
+.mpg-tab:hover{color:#E3D2AC}
+.mpg-tab.active{color:var(--gold-bright);font-weight:600}
+.mpg-tab-indicator{position:absolute;bottom:0;left:0;width:50%;height:2px;background:var(--gold-bright);transition:transform .32s cubic-bezier(.65,0,.35,1)}
+
+/* ---------- TOOLBAR ---------- */
+.mpg-toolbar{padding:16px 20px 4px;border-bottom:1px solid var(--parchment-line);background:var(--parchment-deep)}
+.mpg-cat-nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.mpg-cat-btn{
+  display:flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:20px;
+  border:1px solid var(--parchment-line);background:rgba(255,255,255,0.35);cursor:pointer;
+  font-family:var(--mono);font-size:11px;color:var(--text-soft);transition:all .15s;
+}
+.mpg-cat-btn:hover{border-color:var(--gold);background:rgba(255,255,255,0.6)}
+.mpg-cat-btn.active{color:#fff;border-color:transparent;box-shadow:inset 0 1px 3px rgba(0,0,0,0.25)}
+.mpg-seal{width:9px;height:9px;border-radius:50%;display:inline-block;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.15),inset 0 -1px 1px rgba(255,255,255,0.3);flex-shrink:0}
+.mpg-search-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.mpg-search-wrap{position:relative;flex:1}
+.mpg-search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--text-faint)}
+.mpg-search-wrap input{
+  width:100%;padding:9px 12px 9px 32px;border-radius:var(--radius);
+  border:1px solid var(--parchment-line);background:#FBF4E3;color:var(--text-main);
+  font-family:var(--serif-body);font-style:italic;font-size:13.5px;
+}
+.mpg-search-wrap input::placeholder{color:var(--text-faint)}
+.mpg-search-wrap input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(169,120,46,0.15)}
+.mpg-result-count{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);white-space:nowrap}
+
+/* column hint row (desktop only) */
+.mpg-col-hints{display:none;font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);padding:10px 18px 0;gap:0}
+.mpg-col-hints span{display:block}
+
+/* ---------- ENTRIES ---------- */
+.mpg-entries{padding:4px 0 10px}
+.mpg-entry-row{
+  border-bottom:1px solid var(--parchment-line);
+  animation:mpgFade .35s ease both;
+}
+.mpg-entry-row:hover{background:rgba(255,255,255,0.35)}
+.mpg-entry-row.open{background:rgba(255,255,255,0.4)}
+@keyframes mpgFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+.mpg-entry-toggle{
+  all:unset;display:grid;width:100%;cursor:pointer;padding:13px 18px;
+  border-left:3px solid transparent;transition:border-color .2s;
+  grid-template-columns:42px minmax(150px,1fr) 145px minmax(170px,1.3fr) 22px;
+  grid-template-rows:auto auto;
+  grid-template-areas:
+    "num title ref summary chev"
+    "num cat  ref summary chev";
+  column-gap:14px;row-gap:3px;align-items:center;
+}
+.mpg-entry-row:hover .mpg-entry-toggle,.mpg-entry-row.open .mpg-entry-toggle{border-left-color:var(--accent)}
+.mpg-entry-num{grid-area:num;font-family:var(--mono);font-size:12px;color:var(--rubric);font-weight:600;align-self:start;padding-top:2px}
+.mpg-entry-title{grid-area:title;font-family:var(--serif-display);font-weight:560;font-size:15px;color:var(--text-main);line-height:1.3}
+.mpg-entry-cat{grid-area:cat;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-soft)}
+.mpg-entry-ref{grid-area:ref;align-self:center;font-family:var(--mono);font-size:11.5px;color:var(--text-soft);line-height:1.5}
+.mpg-entry-ref .ref-more{color:var(--text-faint)}
+.mpg-entry-summary{grid-area:summary;align-self:center;font-size:13px;line-height:1.55;color:var(--text-soft)}
+.mpg-entry-chevron{grid-area:chev;align-self:start;justify-self:end;color:var(--text-faint);transition:transform .25s ease;font-size:13px;padding-top:2px}
+.mpg-entry-row.open .mpg-entry-chevron{transform:rotate(180deg);color:var(--accent)}
+
+.mpg-detail-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s cubic-bezier(.65,0,.35,1)}
+.mpg-entry-row.open .mpg-detail-wrap{grid-template-rows:1fr}
+.mpg-detail-inner{overflow:hidden;min-height:0}
+.mpg-detail{padding:6px 18px 22px 63px;display:grid;grid-template-columns:1fr 1fr;gap:16px 26px}
+.mpg-d-block h4{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin:0 0 5px;font-weight:600}
+.mpg-d-block p{font-size:13.5px;line-height:1.65;color:var(--text-main)}
+.mpg-d-block.quote{border-left:2px solid var(--rubric);padding-left:12px}
+.mpg-d-block.quote p{font-style:italic;font-family:var(--serif-display);font-size:15px;color:var(--ink-soft)}
+.mpg-ref-full{font-family:var(--mono);font-size:12px;color:var(--text-soft);line-height:1.7;margin-bottom:8px}
+.mpg-copy-btn{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold);background:none;border-radius:20px;
+  padding:5px 12px;cursor:pointer;transition:all .15s;
+}
+.mpg-copy-btn:hover{background:var(--gold);color:#fff}
+.mpg-copy-btn.copied{background:#3B6D11;border-color:#3B6D11;color:#fff}
+
+.mpg-empty{padding:48px 24px;text-align:center;color:var(--text-faint);font-family:var(--serif-display);font-style:italic;font-size:15px}
+
+.mpg-foot{
+  text-align:center;padding:16px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--text-faint);border-top:1px solid var(--parchment-line);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (min-width:760px){
+  .mpg-col-hints{display:grid;grid-template-columns:42px minmax(150px,1fr) 145px minmax(170px,1.3fr) 22px;column-gap:14px;padding-bottom:6px}
+  .mpg-col-hints span:nth-child(1){grid-column:1}
+  .mpg-col-hints span:nth-child(2){grid-column:2}
+  .mpg-col-hints span:nth-child(3){grid-column:3}
+  .mpg-col-hints span:nth-child(4){grid-column:4}
+}
+@media (max-width:760px){
+  .mpg-entry-toggle{grid-template-columns:30px 1fr 22px;grid-template-areas:"num title chev" "num cat chev" "num ref chev"}
+  .mpg-entry-summary{display:none}
+  .mpg-entry-ref{font-size:11px}
+  .mpg-detail{grid-template-columns:1fr;padding-left:18px}
+}
+@media (max-width:480px){
+  .mpg-hero{padding:30px 16px 22px}
+  .mpg-stats{gap:7px}
+  .mpg-stat{padding:7px 12px;min-width:70px}
+  .mpg-search-row{flex-wrap:wrap}
+  .mpg-result-count{width:100%;text-align:right}
+}
+@media (prefers-reduced-motion:reduce){
+  .mpg-root *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="mpg-root">
+  <div class="mpg-hero">
+    <p class="mpg-eyebrow">A Study Reference</p>
+    <h1>Miracles &amp; Parables<em>of Jesus</em></h1>
+    <p class="mpg-hero-sub">Every healing, wonder, and teaching story across the four Gospels — with full references, historical context, and the lesson each one carries.</p>
+    <div class="mpg-ornament"><span></span><i></i><span></span></div>
+    <div class="mpg-stats">
+      <div class="mpg-stat"><div class="mpg-stat-n">40</div><div class="mpg-stat-l">Miracles</div></div>
+      <div class="mpg-stat"><div class="mpg-stat-n">50</div><div class="mpg-stat-l">Parables</div></div>
+      <div class="mpg-stat"><div class="mpg-stat-n">4</div><div class="mpg-stat-l">Gospels</div></div>
+      <div class="mpg-stat"><div class="mpg-stat-n">90+</div><div class="mpg-stat-l">Entries</div></div>
+    </div>
+  </div>
+
+  <div class="mpg-tabs" id="mpg-tabs">
+    <button class="mpg-tab active" data-tab="miracles" type="button">Miracles</button>
+    <button class="mpg-tab" data-tab="parables" type="button">Parables</button>
+    <span class="mpg-tab-indicator" id="mpg-tab-indicator"></span>
+  </div>
+
+  <div class="mpg-toolbar">
+    <div class="mpg-cat-nav" id="mpg-cat-nav"></div>
+    <div class="mpg-search-row">
+      <div class="mpg-search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+        <input id="mpg-search" type="text" placeholder="Search the scrolls — name, reference, or lesson…">
+      </div>
+      <span class="mpg-result-count" id="mpg-result-count"></span>
+    </div>
+    <div class="mpg-col-hints"><span>No.</span><span>Entry</span><span>Reference</span><span>Summary</span></div>
+  </div>
+
+  <div class="mpg-entries" id="mpg-entries"></div>
+  <div class="mpg-empty" id="mpg-empty" style="display:none">The scrolls hold no entry like that — try another search or category.</div>
+
+  <div class="mpg-foot">✦ Compiled across Matthew, Mark, Luke &amp; John ✦</div>
+</div>
+
+<script>
+(function(){
+
+const MIRACLES=[
+  {sl:1,name:"Healing the Leper",cat:"healing",ref:"Matt 8:1-4; Mark 1:40-45; Luke 5:12-16",summary:"Jesus touched a man with leprosy and healed him instantly, defying social and religious taboos by reaching out to the untouchable.",keyVerse:"'I am willing,' he said. 'Be clean!' (Matt 8:3)",lesson:"Jesus has compassion for the outcast. No one is too broken or unclean for His touch. Faith brings healing.",context:"Leprosy meant total social exclusion under Mosaic law. Jesus' touch was an act of radical compassion.",application:"Reach out to those society has rejected. Trust Christ to make you clean in spirit."},
+  {sl:2,name:"Healing the Centurion's Servant",cat:"healing",ref:"Matt 8:5-13; Luke 7:1-10",summary:"A Roman officer asked Jesus to heal his paralyzed servant. Jesus marveled at his faith and healed without going to the house.",keyVerse:"'I have not found such great faith even in Israel.' (Matt 8:10)",lesson:"Great faith trusts God's word without needing to see. God honors faith regardless of nationality.",context:"Roman centurions were Gentiles — this miracle shows Jesus' ministry extended beyond Jewish boundaries.",application:"You don't need to see to believe. Bring your burdens to Jesus in faith."},
+  {sl:3,name:"Healing Peter's Mother-in-law",cat:"healing",ref:"Matt 8:14-15; Mark 1:29-31; Luke 4:38-39",summary:"Jesus healed Peter's mother-in-law of a fever with a touch, and she immediately rose to serve them.",keyVerse:"He touched her hand and the fever left her. (Matt 8:15)",lesson:"Jesus cares about everyday suffering. Healing leads to grateful service.",context:"This was one of Jesus' first healings recorded, demonstrating His power over sickness in a domestic setting.",application:"Let Jesus heal your burdens so you can rise and serve others."},
+  {sl:4,name:"Healing Two Demon-Possessed Men",cat:"demon",ref:"Matt 8:28-34; Mark 5:1-20; Luke 8:26-39",summary:"Jesus cast demons out of two men into a herd of swine, who then rushed into the sea. The healed man became an evangelist.",keyVerse:"'Go home to your own people and tell them...' (Mark 5:19)",lesson:"Jesus has total authority over the demonic. Deliverance leads to a mission. Not all will welcome Christ.",context:"The region of the Gadarenes was Gentile territory, significant for Jesus' cross-cultural ministry.",application:"No spiritual bondage is beyond Jesus' power. Respond to deliverance by sharing your testimony."},
+  {sl:5,name:"Healing the Paralytic",cat:"healing",ref:"Matt 9:1-8; Mark 2:1-12; Luke 5:17-26",summary:"Four friends lowered a paralyzed man through a roof to reach Jesus, who first forgave sins, then healed the man.",keyVerse:"'Son, your sins are forgiven.' (Mark 2:5)",lesson:"Spiritual healing matters more than physical. Friends can carry us to Jesus. Jesus has authority to forgive.",context:"Jesus' claim to forgive sins outraged the Pharisees as blasphemy, revealing His divine identity.",application:"Bring others to Jesus through persistent prayer. Allow Jesus to heal you from the inside out."},
+  {sl:6,name:"Healing the Man with a Withered Hand",cat:"healing",ref:"Matt 12:9-14; Mark 3:1-6; Luke 6:6-11",summary:"Jesus healed a man on the Sabbath despite opposition, declaring that doing good on the Sabbath is lawful.",keyVerse:"'Stretch out your hand.' He stretched it out, and it was completely restored. (Matt 12:13)",lesson:"Mercy takes priority over rigid rule-keeping. Jesus is Lord of the Sabbath.",context:"This miracle provoked the Pharisees to plot against Jesus, escalating the conflict.",application:"Do not let tradition prevent you from showing compassion. Human need trumps religious formality."},
+  {sl:7,name:"Healing the Bleeding Woman",cat:"healing",ref:"Matt 9:20-22; Mark 5:25-34; Luke 8:43-48",summary:"A woman who suffered 12 years touched Jesus' garment in faith and was instantly healed. Jesus affirmed her faith.",keyVerse:"'Daughter, your faith has healed you.' (Mark 5:34)",lesson:"Persistent, humble faith reaches Jesus. Even a touch in a crowd can bring healing. He notices us.",context:"This woman was considered ceremonially unclean, making her touch of Jesus socially transgressive.",application:"Reach out to Jesus in private desperation. Your faith — even small — can bring a miracle."},
+  {sl:8,name:"Raising Jairus' Daughter",cat:"raising",ref:"Matt 9:18-26; Mark 5:21-43; Luke 8:40-56",summary:"While delayed by the bleeding woman, Jesus continued to Jairus' home and raised his daughter from the dead.",keyVerse:"'Don't be afraid; just believe.' (Mark 5:36)",lesson:"Jesus is never too late. Death is not the final word. Faith must persist through delays.",context:"Intertwined with the bleeding woman miracle — both involve 12 (years of suffering / age of the girl).",application:"Keep trusting when things seem hopeless. Jesus can restore what appears permanently lost."},
+  {sl:9,name:"Healing Two Blind Men",cat:"healing",ref:"Matt 9:27-31",summary:"Two blind men followed Jesus crying for mercy. Jesus touched their eyes based on their faith and they received sight.",keyVerse:"'According to your faith let it be done to you.' (Matt 9:29)",lesson:"Persistent pursuit of Jesus brings results. Faith is the channel through which healing flows.",context:"One of several blind healings in Matthew, showing Jesus as the fulfillment of Isaiah's messianic prophecy.",application:"Don't give up pursuing Jesus. What you believe about Him shapes what you receive from Him."},
+  {sl:10,name:"Healing a Mute Demoniac",cat:"demon",ref:"Matt 9:32-34",summary:"Jesus cast out a demon, and the formerly mute man began to speak. The crowds marveled, but Pharisees attributed it to Satan.",keyVerse:"When the demon was driven out, the man who had been mute spoke. (Matt 9:33)",lesson:"Jesus restores what the enemy has silenced. Opposition does not negate His power.",context:"The Pharisees' accusation that Jesus worked by Beelzebub escalates here, later addressed directly.",application:"Jesus can restore your voice — your testimony, your joy, your praise."},
+  {sl:11,name:"Healing the Man Born Blind",cat:"healing",ref:"John 9:1-41",summary:"Jesus made mud and anointed a man's eyes, sending him to wash. He received sight. An extended dialogue followed about spiritual blindness.",keyVerse:"'I am the light of the world.' (John 9:5)",lesson:"Physical blindness can point to spiritual blindness. Jesus gives sight both physically and spiritually.",context:"The longest miracle account in John, leading to the Pharisees' confrontation and the healed man's worship.",application:"Ask Jesus to open your eyes to spiritual truth. Respond to His work with worship, not controversy."},
+  {sl:12,name:"Healing the Crippled Woman",cat:"healing",ref:"Luke 13:10-17",summary:"Jesus healed a woman bent double for 18 years on the Sabbath. He declared that freedom is appropriate on God's holy day.",keyVerse:"'Woman, you are set free from your infirmity.' (Luke 13:12)",lesson:"Jesus sees those others overlook. The Sabbath is made for human liberation, not restriction.",context:"The synagogue ruler's objection reveals how religion can miss the very heart of God.",application:"You may have been bent down under a burden for years. Jesus has the authority to set you free today."},
+  {sl:13,name:"Healing the Man with Dropsy",cat:"healing",ref:"Luke 14:1-6",summary:"At a Pharisee's home on the Sabbath, Jesus healed a man with abnormal fluid retention and challenged the guests about Sabbath rules.",keyVerse:"'Is it lawful to heal on the Sabbath or not?' (Luke 14:3)",lesson:"Compassion is never out of season. The letter of the law must yield to the spirit of love.",context:"Jesus deliberately placed before the Pharisees a test case to expose their hypocrisy about the Sabbath.",application:"Let love guide your religious practice, not merely legalism."},
+  {sl:14,name:"Healing the Nobleman's Son",cat:"healing",ref:"John 4:46-54",summary:"A royal official begged Jesus to heal his dying son. Jesus healed at a distance with a word, and the official believed.",keyVerse:"'Go,' Jesus replied, 'your son will live.' (John 4:50)",lesson:"Faith takes Jesus at His word without needing signs. Jesus heals across distance and time.",context:"Jesus' second miracle in Cana — contrasts with those who require signs to believe.",application:"Take God at His word. You don't need to see to trust His promises."},
+  {sl:15,name:"Healing the Invalid at Bethesda",cat:"healing",ref:"John 5:1-15",summary:"At the Pool of Bethesda, Jesus healed a man who had been invalid for 38 years, telling him to take up his mat and walk.",keyVerse:"'Get up! Pick up your mat and walk.' (John 5:8)",lesson:"Jesus takes the initiative to seek the helpless. Grace restores what we cannot fix ourselves.",context:"The man didn't know who healed him — Jesus later found him in the temple and called him to sin no more.",application:"Jesus can find you even in your stuck place. Let His grace move where effort has failed."},
+  {sl:16,name:"Healing the Deaf and Mute Man",cat:"healing",ref:"Mark 7:31-37",summary:"Jesus took the deaf-mute man aside privately, touched his ears and tongue, looked to heaven, and said 'Ephphatha' — he was healed.",keyVerse:"'Ephphatha!' (which means 'Be opened!') (Mark 7:34)",lesson:"Jesus gives personal, intimate attention to each person. He opens ears to hear truth and mouths to praise.",context:"This occurred in the Decapolis — Gentile territory — showing the universal scope of Jesus' ministry.",application:"Ask God to open your ears to His voice and your mouth to declare His glory."},
+  {sl:17,name:"Healing Blind Bartimaeus",cat:"healing",ref:"Matt 20:29-34; Mark 10:46-52; Luke 18:35-43",summary:"Blind Bartimaeus called out persistently to Jesus despite the crowd's rebuke. Jesus stopped, called him, and healed him.",keyVerse:"'What do you want me to do for you?' (Mark 10:51)",lesson:"Persistent, desperate faith gets Jesus' attention. He stops for those others try to silence.",context:"Bartimaeus is the only healed beggar named in the Gospels — his story is preserved because of his bold faith.",application:"Don't let others silence your cry for help. Cry out to Jesus boldly and specifically."},
+  {sl:18,name:"Healing Malchus' Ear",cat:"healing",ref:"Luke 22:50-51; John 18:10",summary:"When Peter cut off the ear of Malchus, a servant of the high priest, Jesus immediately healed it — even as He was being arrested.",keyVerse:"And he touched the man's ear and healed him. (Luke 22:51)",lesson:"Jesus showed mercy even in His most painful moment. His kingdom is not advanced by violence.",context:"This is the last miracle before the crucifixion — a final act of compassion amid betrayal.",application:"Even when you are being wronged, choose mercy over retaliation."},
+  {sl:19,name:"Healing Ten Lepers",cat:"healing",ref:"Luke 17:11-19",summary:"Jesus healed ten lepers who cried out to Him, but only one — a Samaritan — returned to give thanks. Jesus noted his grateful faith.",keyVerse:"'Were not all ten cleansed? Where are the other nine?' (Luke 17:17)",lesson:"Gratitude is rare but precious. Faith and thankfulness go together. God's grace extends to all nations.",context:"The Samaritans were despised — yet one of them modeled the appropriate response to grace.",application:"Cultivate a heart of thankfulness. Return to Jesus to give praise for every blessing received."},
+  {sl:20,name:"Healing the Syrophoenician Woman's Daughter",cat:"demon",ref:"Matt 15:21-28; Mark 7:24-30",summary:"A Gentile woman persistently pleaded for her demon-possessed daughter. Jesus tested her faith, then granted her request.",keyVerse:"'Woman, you have great faith! Your request is granted.' (Matt 15:28)",lesson:"Persevering, humble faith is rewarded. Jesus responds to those who refuse to give up.",context:"Jesus' response tests her faith and reveals the scope of His mission — ultimately universal.",application:"Don't quit asking. Humble persistence in prayer is never wasted."},
+  {sl:21,name:"Casting Out a Boy's Unclean Spirit",cat:"demon",ref:"Matt 17:14-21; Mark 9:14-29; Luke 9:37-43",summary:"The disciples failed to cast out the spirit; Jesus rebuked it and delivered the boy, teaching on the need for faith and prayer.",keyVerse:"'This kind can come out only by prayer.' (Mark 9:29)",lesson:"Some battles require deeper prayer and faith. Human effort alone is insufficient against spiritual forces.",context:"The disciples' failure humbled them — the miracle came with a teaching on spiritual authority.",application:"Deepen your prayer life for the battles you cannot win in your own strength."},
+  {sl:22,name:"Casting Out a Demon in the Synagogue",cat:"demon",ref:"Mark 1:21-28; Luke 4:31-37",summary:"In the Capernaum synagogue, a man with an unclean spirit was confronted by Jesus. The demon confessed Jesus' identity and was expelled.",keyVerse:"'Be quiet! Come out of him!' (Mark 1:25)",lesson:"Jesus has authority that the demonic world recognizes. His word is enough to drive out evil.",context:"This was among Jesus' first public acts, immediately establishing His authority over spiritual forces.",application:"The name of Jesus carries real authority. Speak it with faith against fear and darkness."},
+  {sl:23,name:"Casting Out the Blind and Mute Demoniac",cat:"demon",ref:"Matt 12:22-23; Luke 11:14",summary:"Jesus healed a man who was both blind and mute due to a demon, prompting the crowd to ask if He was the Son of David.",keyVerse:"And all the people were astonished. (Matt 12:23)",lesson:"Jesus restores completely — body, voice, and spirit. Even healings point to His messianic identity.",context:"This miracle triggered the Beelzebub controversy, prompting Jesus' teaching on the unforgivable sin.",application:"Allow Jesus to restore every dimension of what the enemy has stolen from you."},
+  {sl:24,name:"Water into Wine",cat:"nature",ref:"John 2:1-11",summary:"At the wedding in Cana, Jesus turned six large stone jars of water into wine, His first miracle and a revelation of His glory.",keyVerse:"What Jesus did here in Cana of Galilee was the first of the signs. (John 2:11)",lesson:"Jesus transforms the ordinary into the extraordinary. He saves the best for those who trust Him.",context:"The six jars used for Jewish purification rituals are transformed — symbolic of the new covenant.",application:"Bring your empty vessels to Jesus. He specializes in turning the ordinary into something glorious."},
+  {sl:25,name:"Calming the Storm",cat:"nature",ref:"Matt 8:23-27; Mark 4:35-41; Luke 8:22-25",summary:"During a violent storm, Jesus rebuked the wind and waves, and there was complete calm. The disciples were awestruck.",keyVerse:"'You of little faith, why are you so afraid?' (Matt 8:26)",lesson:"Jesus has authority over nature. Faith is greater than fear. He is present in life's storms.",context:"The Sea of Galilee was known for sudden violent storms — the disciples' fear was real and understandable.",application:"When storms rage around you, remember Jesus is in your boat. His word can still the chaos."},
+  {sl:26,name:"Walking on Water",cat:"nature",ref:"Matt 14:22-33; Mark 6:45-52; John 6:16-21",summary:"Jesus walked on the water to the disciples' boat. Peter stepped out but sank when he took his eyes off Jesus, who rescued him.",keyVerse:"'Lord, save me!' Immediately Jesus reached out his hand. (Matt 14:30-31)",lesson:"Keep your eyes on Jesus, not the storm. Doubt causes sinking; Christ saves those who call on Him.",context:"This follows the feeding of the 5,000 — both miracles reveal Jesus as the Lord of creation.",application:"Whatever is keeping you from stepping out in faith, fix your eyes on Jesus and step forward."},
+  {sl:27,name:"Feeding the 5,000",cat:"nature",ref:"Matt 14:13-21; Mark 6:30-44; Luke 9:10-17; John 6:1-15",summary:"With five loaves and two fish, Jesus fed more than 5,000 people, with twelve baskets left over.",keyVerse:"'Bring them here to me.' (Matt 14:18)",lesson:"Jesus can multiply what little we offer. He provides abundantly. Give what you have to Jesus.",context:"The only miracle recorded in all four Gospels. Jesus' method — give thanks, break, distribute — mirrors the Eucharist.",application:"Don't hold back the little you have. In Jesus' hands, it becomes more than enough."},
+  {sl:28,name:"Feeding the 4,000",cat:"nature",ref:"Matt 15:32-39; Mark 8:1-10",summary:"Jesus fed 4,000 people with seven loaves and a few small fish, with seven baskets left over.",keyVerse:"'I have compassion for these people.' (Mark 8:2)",lesson:"Jesus' compassion is moved by physical need. He provides for those who stay with Him.",context:"Often confused with the feeding of the 5,000, but this happened in Gentile territory — a distinct miracle.",application:"Stay near Jesus in difficult seasons. His compassion does not run out."},
+  {sl:29,name:"Catch of Fish (First)",cat:"nature",ref:"Luke 5:1-11",summary:"After a fruitless night of fishing, Peter let down his nets at Jesus' word and caught so many fish the nets began to break.",keyVerse:"'Because you say so, I will let down the nets.' (Luke 5:5)",lesson:"Obedience to Jesus' word leads to supernatural results. Our empty efforts become fruitful under His direction.",context:"This miracle led to Peter, James, and John leaving everything to follow Jesus.",application:"Try again at Jesus' word, even when experience says it's useless."},
+  {sl:30,name:"Catch of Fish (Second)",cat:"nature",ref:"John 21:1-14",summary:"After the resurrection, Jesus appeared to the disciples fishing on the Sea of Tiberias. At His command, they caught 153 large fish.",keyVerse:"'Throw your net on the right side of the boat.' (John 21:6)",lesson:"The risen Jesus still guides and provides. Obedience to His specific word changes everything.",context:"The number 153 has fascinated interpreters — some see it as symbolic of the totality of nations.",application:"The resurrected Christ is still working in your failures. Obey His word and witness His provision."},
+  {sl:31,name:"Coin in the Fish's Mouth",cat:"nature",ref:"Matt 17:24-27",summary:"Jesus instructed Peter to catch a fish, open its mouth, and find a coin sufficient to pay both their temple taxes.",keyVerse:"'Go to the lake and throw out your line.' (Matt 17:27)",lesson:"Jesus provides for His people in unexpected ways. He cares about every practical need.",context:"This miracle also showed Jesus' humility — though exempt as God's Son, He paid the tax to avoid offense.",application:"God can meet your needs in ways you would never imagine. Trust His creative provision."},
+  {sl:32,name:"Withering the Fig Tree",cat:"nature",ref:"Matt 21:18-22; Mark 11:12-14,20-25",summary:"Jesus cursed a fig tree that bore no fruit; it withered by the next morning. He then taught about faith-filled prayer.",keyVerse:"'May you never bear fruit again!' Immediately the tree withered. (Matt 21:19)",lesson:"God expects fruit from those who bear His name. Faith-filled prayer has remarkable power.",context:"The cursing of the fig tree is a visual parable about Israel's spiritual barrenness at the time.",application:"Examine your life for genuine spiritual fruit. Cultivate a faith that speaks and acts."},
+  {sl:33,name:"Raising the Widow's Son at Nain",cat:"raising",ref:"Luke 7:11-17",summary:"Jesus encountered a funeral procession and raised the widow's only son, moved with compassion for the grieving mother.",keyVerse:"'Young man, I say to you, get up!' (Luke 7:14)",lesson:"Jesus feels our grief and responds with power. He restores hope where death has come.",context:"This miracle echoes Elijah raising the widow's son in 1 Kings 17, presenting Jesus as greater than the prophets.",application:"Bring your grief to Jesus. He can bring life where death has seemed to have the final word."},
+  {sl:34,name:"Raising Lazarus",cat:"raising",ref:"John 11:1-45",summary:"Jesus deliberately waited before going to Bethany, then wept at the tomb of His friend Lazarus, and raised him after four days.",keyVerse:"'I am the resurrection and the life.' (John 11:25)",lesson:"Jesus is Lord over death itself. He weeps with us. His delays are not denials — His timing is perfect.",context:"The raising of Lazarus is the climactic sign in John's Gospel, precipitating the plot to kill Jesus.",application:"Even when Jesus seems delayed, trust that He is at work. His glory will be revealed in His time."},
+  {sl:35,name:"Healing Ten Lepers",cat:"healing",ref:"Luke 17:11-19",summary:"Ten lepers were healed as they went to show themselves to the priests. Only one returned to give thanks.",keyVerse:"'Your faith has made you well.' (Luke 17:19)",lesson:"Gratitude completes the healing. Encounter with Jesus should produce thanksgiving.",context:"The one who returned was a Samaritan — an outsider — highlighting that outsiders often respond best to grace.",application:"Cultivate a lifestyle of returning to thank God for every blessing."},
+  {sl:36,name:"Healing the Paralyzed Man (Pool of Bethesda)",cat:"healing",ref:"John 5:1-15",summary:"Jesus found a man at the pool who had no one to help him in for 38 years and healed him with a command.",keyVerse:"'Do you want to get well?' (John 5:6)",lesson:"Jesus asks us to identify our desire for change. Some have grown comfortable with their condition.",context:"The controversy over Sabbath healing here deepened the Pharisees' hostility toward Jesus.",application:"Ask yourself: do I truly want to be free? And will I follow Jesus' instruction to sin no more?"},
+  {sl:37,name:"Healing the High Priest's Servant's Ear",cat:"healing",ref:"Luke 22:50-51",summary:"Jesus healed Malchus' severed ear in the Garden of Gethsemane even as He was being arrested — the final miracle before the cross.",keyVerse:"He touched the man's ear and healed him. (Luke 22:51)",lesson:"Jesus was merciful even to His enemies at His most vulnerable moment.",context:"This miracle contrasts sharply with the violence of the arrest — Jesus came not to fight but to suffer for all.",application:"In your most painful moments, choose mercy."},
+  {sl:38,name:"Healing the Centurion's Servant (at a distance)",cat:"healing",ref:"Matt 8:5-13; Luke 7:1-10",summary:"Jesus healed a servant without traveling to the location, commending the centurion's faith as greater than He had found in Israel.",keyVerse:"'Just say the word, and my servant will be healed.' (Luke 7:7)",lesson:"Distance is no barrier to Jesus. Humble faith, even from outsiders, is honored.",context:"The centurion's humility is remarkable — he did not feel worthy for Jesus to enter his home.",application:"Approach Jesus with humility. Believe that His word alone is sufficient to bring healing."},
+  {sl:39,name:"The Miraculous Resurrection of Jesus",cat:"raising",ref:"Matt 28; Mark 16; Luke 24; John 20",summary:"Three days after His crucifixion, Jesus rose bodily from the grave, appeared to many witnesses, and conquered death forever.",keyVerse:"'He is not here; he has risen, just as he said.' (Matt 28:6)",lesson:"Death is defeated. Hope is real. The resurrection is the foundation of Christian faith.",context:"The resurrection is the most attested miracle in the Gospels, confirmed by multiple witnesses and appearances.",application:"Live each day in light of the empty tomb. Let the resurrection change how you face every fear."},
+  {sl:40,name:"The Ascension",cat:"nature",ref:"Luke 24:50-53; Acts 1:9-11",summary:"Jesus blessed the disciples and was taken up into heaven, where He is enthroned at the Father's right hand.",keyVerse:"'And surely I am with you always, to the very end of the age.' (Matt 28:20)",lesson:"Jesus is exalted over all. He prepares a place for us. His departure made way for the Holy Spirit.",context:"The ascension is both an ending and a beginning — the disciples returned to Jerusalem with great joy.",application:"Live with your eyes toward heaven, knowing Christ intercedes for you."},
+];
+
+const PARABLES=[
+  {sl:1,name:"The Sower",cat:"kingdom",ref:"Matt 13:3-23; Mark 4:3-20; Luke 8:4-15",summary:"Seeds fell on four types of soil — hard path, rocky ground, thorns, and good soil — representing different responses to God's Word.",keyVerse:"'Still other seed fell on good soil.' (Matt 13:8)",lesson:"The condition of your heart determines how God's Word grows in you. Cultivate receptive soil.",context:"Jesus' first parable in the synoptics — foundational to understanding all other parables.",application:"Examine what kind of soil your heart is. Remove the rocks, thorns, and hardness through God's Word."},
+  {sl:2,name:"The Wheat and Tares",cat:"kingdom",ref:"Matt 13:24-30, 36-43",summary:"An enemy sowed weeds among good wheat. The farmer let both grow until harvest, when separation would occur.",keyVerse:"'Let both grow together until the harvest.' (Matt 13:30)",lesson:"God is patient; judgment will come in its time. Good and evil coexist now but will be separated finally.",context:"Jesus explained this privately to His disciples — one of the few parables with a full interpretation provided.",application:"Don't be discouraged by evil around you. Trust God's perfect timing for justice."},
+  {sl:3,name:"The Mustard Seed",cat:"kingdom",ref:"Matt 13:31-32; Mark 4:30-32; Luke 13:18-19",summary:"The kingdom of heaven is like a mustard seed — smallest of seeds that grows into the largest garden plant.",keyVerse:"'Though it is the smallest of all seeds, yet when it grows, it is the largest of garden plants.' (Matt 13:32)",lesson:"God's kingdom begins small and grows beyond all expectation. Don't despise small beginnings.",context:"Jesus chose the mustard seed as a locally familiar plant with dramatically disproportionate growth.",application:"Trust the process. What seems small in your hands can become great in God's purposes."},
+  {sl:4,name:"The Yeast",cat:"kingdom",ref:"Matt 13:33; Luke 13:20-21",summary:"A woman mixed a small amount of yeast into a large amount of flour, and it worked through the whole batch.",keyVerse:"'The kingdom of heaven is like yeast that a woman took and mixed into about sixty pounds of flour.' (Matt 13:33)",lesson:"God's kingdom works invisibly but pervasively, transforming from within.",context:"Yeast was typically a symbol of evil in Jewish thought — Jesus inverted it here to describe pervasive transformation.",application:"Let the gospel work through every area of your life — not just Sunday mornings."},
+  {sl:5,name:"Hidden Treasure",cat:"kingdom",ref:"Matt 13:44",summary:"A man found hidden treasure in a field and sold everything he had to buy that field.",keyVerse:"'In his joy he went and sold all he had and bought that field.' (Matt 13:44)",lesson:"The kingdom of God is worth sacrificing everything to gain. Its value exceeds all earthly treasure.",context:"In the ancient world, burying valuables was a common form of safe-keeping.",application:"What would you give up to pursue God's kingdom? Is anything holding you back?"},
+  {sl:6,name:"Pearl of Great Price",cat:"kingdom",ref:"Matt 13:45-46",summary:"A merchant seeking fine pearls found one of supreme value and sold everything to buy it.",keyVerse:"'He went away and sold everything he had and bought it.' (Matt 13:46)",lesson:"Knowing Jesus is the greatest discovery a person can make. No sacrifice is too great.",context:"Pearls were among the most precious commodities in the ancient Mediterranean world.",application:"Have you made Jesus your greatest treasure? Is He your pearl of great price?"},
+  {sl:7,name:"The Net",cat:"kingdom",ref:"Matt 13:47-50",summary:"A fishing net gathered all kinds of fish; at the shore the good were kept and the bad thrown away, representing final judgment.",keyVerse:"'So it will be at the end of the age.' (Matt 13:49)",lesson:"The kingdom contains all kinds of people now; final separation is God's work at the end.",context:"Jesus spoke to fishermen who understood sorting catches daily — vivid imagery for His audience.",application:"Do not judge who belongs in the kingdom. Trust God as the perfect Judge."},
+  {sl:8,name:"The Growing Seed",cat:"kingdom",ref:"Mark 4:26-29",summary:"A man scatters seed and it grows by itself while he sleeps — he does not understand how, but the harvest comes.",keyVerse:"'Night and day, whether he sleeps or gets up, the seed sprouts and grows, though he does not know how.' (Mark 4:27)",lesson:"God's kingdom grows by divine power, not merely human effort. Plant faithfully and trust the process.",context:"This parable is unique to Mark — emphasizing God's sovereignty in the growth of the kingdom.",application:"Do your part — sow, water, and trust God for the harvest you cannot produce on your own."},
+  {sl:9,name:"The Lost Sheep",cat:"forgiveness",ref:"Matt 18:12-14; Luke 15:3-7",summary:"A shepherd left 99 sheep to search for one lost sheep, then rejoiced greatly upon finding it.",keyVerse:"'I tell you that in the same way there will be more rejoicing in heaven over one sinner who repents.' (Luke 15:7)",lesson:"God relentlessly pursues each lost person. Every soul has infinite worth to Him.",context:"Jesus told this parable in response to criticism that He welcomed sinners — defending His ministry's purpose.",application:"No one is too far gone to be found. Is there a lost person you can pursue on God's behalf?"},
+  {sl:10,name:"The Lost Coin",cat:"forgiveness",ref:"Luke 15:8-10",summary:"A woman who lost one of ten coins swept the whole house until she found it, then celebrated with her neighbors.",keyVerse:"'There is rejoicing in the presence of the angels of God over one sinner who repents.' (Luke 15:10)",lesson:"Heaven celebrates every repentance. God seeks us with great diligence and rejoices when we are found.",context:"The three parables of the lost in Luke 15 each show the same truth from a different angle — sheep, coin, son.",application:"Let heaven's perspective on the lost shape your heart toward those who don't yet know Jesus."},
+  {sl:11,name:"The Prodigal Son",cat:"forgiveness",ref:"Luke 15:11-32",summary:"A rebellious son demanded his inheritance early, wasted it, and returned broken. His father ran to receive him. The older son was bitter.",keyVerse:"'But while he was still a long way off, his father saw him and was filled with compassion.' (Luke 15:20)",lesson:"God's love runs to us before we finish our repentance. The self-righteous miss the party. Grace is lavish.",context:"This is often called the greatest short story ever told — its psychological depth is unmatched.",application:"Come home to the Father. And if you've stayed home, watch out for the older brother's heart."},
+  {sl:12,name:"The Unforgiving Servant",cat:"forgiveness",ref:"Matt 18:21-35",summary:"A king forgave a servant's enormous debt, but that servant refused to forgive a tiny debt owed him. The king then reversed the forgiveness.",keyVerse:"'Shouldn't you have had mercy on your fellow servant just as I had on you?' (Matt 18:33)",lesson:"We must forgive others because we have been forgiven an even greater debt by God.",context:"This parable answered Peter's question about how many times to forgive — Jesus said not seven but seventy-seven times.",application:"The depth of your forgiveness of others reveals your understanding of God's forgiveness of you."},
+  {sl:13,name:"The Good Samaritan",cat:"compassion",ref:"Luke 10:25-37",summary:"A man beaten by robbers was ignored by a priest and Levite, but a despised Samaritan stopped, cared for him fully, and paid for his recovery.",keyVerse:"'Go and do likewise.' (Luke 10:37)",lesson:"Our neighbor is anyone in need, regardless of race or religion. Love is practical and costly.",context:"Jesus told this parable to redefine 'neighbor' in response to a lawyer trying to justify himself.",application:"Who is the Samaritan in your life? Who has God placed in your path who needs practical love?"},
+  {sl:14,name:"The Rich Fool",cat:"wisdom",ref:"Luke 12:16-21",summary:"A wealthy man planned to build bigger barns and take life easy. That very night his life was demanded of him.",keyVerse:"'You fool! This very night your life will be demanded from you.' (Luke 12:20)",lesson:"Life is not measured by possessions. Eternal preparation matters more than earthly accumulation.",context:"Jesus told this parable after a man asked Him to arbitrate over an inheritance — refusing to be a judge of property.",application:"Evaluate your life by eternal values, not earthly wealth. Are you rich toward God?"},
+  {sl:15,name:"The Barren Fig Tree",cat:"wisdom",ref:"Luke 13:6-9",summary:"A fig tree bore no fruit for three years. The gardener asked for one more year to tend it — if it bore no fruit then, cut it down.",keyVerse:"'If it bears fruit next year, fine! If not, then cut it down.' (Luke 13:9)",lesson:"God's patience has a purpose — to lead us to repentance. But patience has limits; bear fruit now.",context:"This parable followed Jesus' response to the massacre of Galileans — calling all to repent.",application:"Don't presume on God's patience. Respond to His grace now and bear fruit in keeping with repentance."},
+  {sl:16,name:"The Persistent Widow",cat:"prayer",ref:"Luke 18:1-8",summary:"A widow persistently appealed to an unjust judge until he granted her request — Jesus said how much more will God answer His children.",keyVerse:"'Will not God bring about justice for his chosen ones, who cry out to him day and night?' (Luke 18:7)",lesson:"Persistent prayer will be answered. God is a just Father, not an indifferent judge.",context:"Jesus told this parable to show that His disciples 'should always pray and not give up.'",application:"Keep praying. Your persistence in prayer is not annoying to God — it is faith in action."},
+  {sl:17,name:"The Friend at Midnight",cat:"prayer",ref:"Luke 11:5-13",summary:"A man woke a friend at midnight asking for bread for a guest. The friend finally got up — not out of friendship, but because of the man's boldness.",keyVerse:"'Ask and it will be given to you; seek and you will find.' (Luke 11:9)",lesson:"Bold, persistent asking is appropriate with God. If a reluctant friend responds, how much more will your Father.",context:"This is paired with the Lord's Prayer — teaching that prayer should be bold and relentless.",application:"Come to God with your needs boldly. He is not annoyed but pleased by persistent faith."},
+  {sl:18,name:"The Pharisee and the Tax Collector",cat:"prayer",ref:"Luke 18:9-14",summary:"A self-righteous Pharisee boasted in prayer while a tax collector humbly asked for mercy. Jesus declared the tax collector justified.",keyVerse:"'God, have mercy on me, a sinner.' (Luke 18:13)",lesson:"Humble prayer is heard; pride is rejected. True worship begins with an honest view of oneself.",context:"This parable was directed specifically to 'some who were confident of their own righteousness and looked down on everyone else.'",application:"Approach God with humility, not credentials. The posture of the heart determines the prayer's reception."},
+  {sl:19,name:"The Talents",cat:"faithfulness",ref:"Matt 25:14-30",summary:"A master gave servants different amounts of money before a journey. The first two doubled theirs; the third buried his and was condemned.",keyVerse:"'Well done, good and faithful servant!' (Matt 25:21)",lesson:"God expects return on His investment. Use your gifts — to hoard them is to lose them.",context:"This parable is about more than money — it addresses faithful stewardship of all God has entrusted.",application:"What has God given you? Are you multiplying it for His kingdom or burying it in fear?"},
+  {sl:20,name:"The Minas",cat:"faithfulness",ref:"Luke 19:11-27",summary:"A nobleman gave ten servants one mina each and went away. Upon return he rewarded those who traded faithfully and judged the unfaithful one.",keyVerse:"'Because you have been trustworthy in a very small matter, take charge of ten cities.' (Luke 19:17)",lesson:"Faithfulness in small things opens doors to greater responsibility. Faithlessness leads to loss.",context:"This parable was told because people thought the kingdom of God was about to appear immediately.",application:"Be faithful in the small assignments God has given you right now."},
+  {sl:21,name:"The Wise and Foolish Virgins",cat:"faithfulness",ref:"Matt 25:1-13",summary:"Ten virgins waited for a bridegroom. The five wise brought extra oil; the five foolish ran out. The bridegroom came while the foolish were buying oil.",keyVerse:"'Therefore keep watch, because you do not know the day or the hour.' (Matt 25:13)",lesson:"Prepare now for Christ's return. Spiritual preparedness cannot be borrowed at the last minute.",context:"Jewish wedding customs required guests to await the groom — often late — with lamps ready.",application:"Don't presume on borrowed grace. Cultivate your own walk with Christ daily."},
+  {sl:22,name:"The Faithful and Wicked Servants",cat:"faithfulness",ref:"Matt 24:45-51; Luke 12:42-48",summary:"A faithful servant managed the household well in his master's absence; the wicked servant abused his position. Their returns revealed their hearts.",keyVerse:"'Who then is the faithful and wise servant?' (Matt 24:45)",lesson:"We are stewards, not owners. How we act when no one is watching matters to God.",context:"Part of Jesus' Olivet Discourse on readiness for His return.",application:"Live as if Jesus is watching — because He is. Be faithful in your current assignment."},
+  {sl:23,name:"The Wedding Banquet",cat:"judgment",ref:"Matt 22:1-14",summary:"A king invited guests to his son's wedding banquet, but they refused. He then invited anyone from the streets, but expelled a guest without wedding clothes.",keyVerse:"'Many are invited, but few are chosen.' (Matt 22:14)",lesson:"God's invitation is universal, but proper response is required. Presuming on grace without transformation is dangerous.",context:"This parable was directed at the chief priests and Pharisees who were rejecting Jesus' invitation.",application:"Have you accepted God's invitation? And are you wearing the righteousness He provides?"},
+  {sl:24,name:"The Sheep and Goats",cat:"judgment",ref:"Matt 25:31-46",summary:"At the final judgment, people are separated as sheep and goats based on how they treated the hungry, thirsty, stranger, sick, and imprisoned.",keyVerse:"'Whatever you did for one of the least of these brothers and sisters of mine, you did for me.' (Matt 25:40)",lesson:"Loving the vulnerable is loving Jesus. Faith must show itself in action toward those in need.",context:"This closes Jesus' Olivet Discourse — the ultimate standard of judgment is love expressed practically.",application:"See Jesus in every person in need. Serve the poor, the sick, the stranger as you would serve Christ."},
+  {sl:25,name:"The Rich Man and Lazarus",cat:"compassion",ref:"Luke 16:19-31",summary:"A rich man who ignored a poor beggar at his gate both died. Lazarus went to Abraham's side; the rich man suffered in Hades.",keyVerse:"'Between us and you a great chasm has been set in place.' (Luke 16:26)",lesson:"Choices made in this life have eternal consequences. The needy deserve our attention now, not later.",context:"This parable is unique in naming the poor man — Lazarus — giving him dignity the rich man denied in life.",application:"Notice the Lazarus at your gate. Eternity is shaped by how we respond to those in need today."},
+  {sl:26,name:"The Lost Son (Prodigal Son)",cat:"forgiveness",ref:"Luke 15:11-32",summary:"A younger son squandered his inheritance and returned in repentance to a waiting father, while the older son's bitter reaction is exposed.",keyVerse:"'This son of mine was dead and is alive again; he was lost and is found.' (Luke 15:24)",lesson:"God's grace is extravagant. Both pride (older son) and rebellion (younger son) keep us from the Father.",context:"The third in the trilogy of lost parables — the most detailed and emotionally rich.",application:"Run home to the Father. And guard against the elder brother's heart of self-righteous comparison."},
+  {sl:27,name:"The Two Sons",cat:"faithfulness",ref:"Matt 21:28-32",summary:"One son said he would not work in the vineyard but later did; the other said he would but never went. Jesus asked which obeyed.",keyVerse:"'Which of the two did what his father wanted?' (Matt 21:31)",lesson:"True obedience is action, not just words. Repentant sinners who change their behavior please God more than religious talk.",context:"Told to the chief priests — the Pharisees were the second son, agreeing but never truly obeying.",application:"Check the gap between what you say you'll do for God and what you actually do."},
+  {sl:28,name:"The Wicked Tenants",cat:"judgment",ref:"Matt 21:33-46; Mark 12:1-12; Luke 20:9-19",summary:"Tenants of a vineyard repeatedly beat and killed the owner's servants, then killed his son. The owner came and destroyed them.",keyVerse:"'The stone the builders rejected has become the cornerstone.' (Matt 21:42)",lesson:"Rejecting God's messengers — and His Son — brings judgment. God will accomplish His purposes despite opposition.",context:"This parable is an allegory of Israel's history of rejecting the prophets and ultimately killing Jesus.",application:"Do not harden your heart against God's messengers or His Word. Receive the Cornerstone."},
+  {sl:29,name:"The Great Banquet",cat:"kingdom",ref:"Luke 14:15-24",summary:"Invited guests made excuses and declined a great feast. The host filled the table by inviting the poor, crippled, blind, and lame.",keyVerse:"'Go out to the roads and country lanes and compel them to come in.' (Luke 14:23)",lesson:"Many reject God's invitation while the unexpected respond. The kingdom is open to all who will come.",context:"This parallels the wedding banquet parable in Matthew — together they emphasize the universal scope of the gospel.",application:"Have you accepted God's invitation? And are you inviting others who wouldn't normally expect to be invited?"},
+  {sl:30,name:"The Tower Builder",cat:"wisdom",ref:"Luke 14:28-30",summary:"A builder who doesn't count the cost before building is mocked for leaving the project unfinished. Count the cost of discipleship.",keyVerse:"'Suppose one of you wants to build a tower. Won't you first sit down and estimate the cost?' (Luke 14:28)",lesson:"Discipleship requires counting the cost. Half-hearted commitment is worse than no commitment.",context:"Told to large crowds who followed Jesus — a warning that following Him requires full surrender.",application:"Have you counted the cost of following Jesus? True discipleship requires total surrender."},
+  {sl:31,name:"The King Going to War",cat:"wisdom",ref:"Luke 14:31-33",summary:"A king going to battle first considers whether with 10,000 men he can defeat a king with 20,000. If not, he seeks peace. So must disciples surrender all.",keyVerse:"'In the same way, those of you who do not give up everything you have cannot be my disciples.' (Luke 14:33)",lesson:"Discipleship requires honest assessment and total surrender — not just enthusiasm.",context:"Paired with the tower builder parable — both call for realistic, wholehearted commitment.",application:"Be honest about what following Jesus costs you. Then surrender it willingly."},
+  {sl:32,name:"The Lost Sheep (Parable)",cat:"forgiveness",ref:"Luke 15:1-7",summary:"A shepherd left 99 safe sheep to find one that was lost, and when found, called friends to celebrate.",keyVerse:"'I tell you that in the same way there will be more rejoicing in heaven over one sinner who repents than over ninety-nine righteous persons.' (Luke 15:7)",lesson:"One soul matters infinitely to God. The pursuit of the lost is the heart of God's mission.",context:"Jesus told this in direct response to Pharisees criticizing Him for welcoming sinners.",application:"Join God's mission to seek the lost. Don't write anyone off as too far from grace."},
+  {sl:33,name:"The Samaritan (Parable Version)",cat:"compassion",ref:"Luke 10:25-37",summary:"Jesus redefined 'neighbor' through the story of a Samaritan who showed mercy where religious leaders passed by.",keyVerse:"'Which of these three do you think was a neighbor to the man who fell into the hands of robbers?' (Luke 10:36)",lesson:"The enemy can be the neighbor. Compassion defines belonging, not ethnicity or religion.",context:"The parable answered the lawyer's question 'Who is my neighbor?' after Jesus gave the great commandment.",application:"Cross cultural, social, and religious boundaries to show practical love."},
+  {sl:34,name:"The Persistent Friend",cat:"prayer",ref:"Luke 11:5-8",summary:"A man knocks on his neighbor's door at midnight for bread. The neighbor gets up because of the man's shameless boldness.",keyVerse:"'Yet because of your shameless audacity he will surely get up and give you as much as you need.' (Luke 11:8)",lesson:"Boldness in prayer is rewarded. Come to God shamelessly and persistently.",context:"This parable is linked to the Lord's Prayer — teaching persistence after Jesus modeled prayer.",application:"Bring your requests to God boldly, repeatedly, and without embarrassment."},
+  {sl:35,name:"The Dishonest Manager",cat:"wisdom",ref:"Luke 16:1-13",summary:"A manager facing dismissal used his position shrewdly to secure his future. Jesus commended his worldly wisdom and applied it to spiritual urgency.",keyVerse:"'The people of this world are more shrewd in dealing with their own kind than are the people of the light.' (Luke 16:8)",lesson:"Use worldly resources for eternal purposes. Be as strategic about God's kingdom as worldly people are about their affairs.",context:"One of Jesus' most difficult parables — often misunderstood as commending dishonesty.",application:"How strategic are you in using your resources for eternity? Invest wisely in kingdom priorities."},
+  {sl:36,name:"The Rich Man and Lazarus (Parable)",cat:"judgment",ref:"Luke 16:19-31",summary:"The reversal of fortunes between a rich man who lived lavishly and Lazarus who suffered at his gate — a warning about eternal consequences.",keyVerse:"'They have Moses and the Prophets; let them listen to them.' (Luke 16:29)",lesson:"Scripture is sufficient for salvation. Earthly wealth does not secure eternal safety.",context:"This parable also warns that not even a resurrection would convince those who reject God's Word — prophetic of Jesus' own resurrection.",application:"Take Scripture seriously today. Don't wait for a miracle to move you toward God."},
+  {sl:37,name:"The Pharisee and Publican",cat:"prayer",ref:"Luke 18:9-14",summary:"Two men prayed: a Pharisee boasted; a tax collector beat his chest asking for mercy. Jesus declared the humble man justified.",keyVerse:"'God, have mercy on me, a sinner.' (Luke 18:13)",lesson:"God is drawn to the humble and repentant. Pride in prayer is the greatest obstacle to being heard.",context:"Told to those 'who were confident of their own righteousness and looked down on everyone else.'",application:"Approach God daily with the tax collector's prayer. Humble honesty is the beginning of real encounter with God."},
+  {sl:38,name:"The Workers in the Vineyard",cat:"kingdom",ref:"Matt 20:1-16",summary:"Laborers hired at different hours all received the same wage. Those who worked all day grumbled at the owner's generosity.",keyVerse:"'Don't I have the right to do what I want with my own money? Or are you envious because I am generous?' (Matt 20:15)",lesson:"God's grace is not proportional — it's extravagant. Resist comparing your place in God's kingdom to others'.",context:"This parable challenges the idea that the most religious deserve more from God — grace is not earned.",application:"Celebrate God's generosity toward others instead of resenting it. Every gift of grace is grace."},
+  {sl:39,name:"The Ten Minas",cat:"faithfulness",ref:"Luke 19:11-27",summary:"A nobleman gave each of ten servants one mina. Those who multiplied it were rewarded; the one who hid his was judged.",keyVerse:"'Take his mina away from him and give it to the one who has ten minas.' (Luke 19:24)",lesson:"Investment of God's gifts is required. Those who make the most of what they have receive more.",context:"Told to correct the expectation that the kingdom of God would appear immediately.",application:"Don't wait for more before you act. Be faithful and multiply what you have now."},
+  {sl:40,name:"The Sower and the Soils",cat:"kingdom",ref:"Matt 13:18-23; Mark 4:13-20; Luke 8:11-15",summary:"Jesus explained the soils as hearts: the wayside (hardened), the rocky (no root), the thorny (choked), and the good soil (fruitful).",keyVerse:"'But the seed falling on good soil refers to someone who hears the word and understands it.' (Matt 13:23)",lesson:"Your response to God's Word determines your spiritual fruitfulness. Cultivate an understanding heart.",context:"This parable had its own explanation, given privately to the disciples — unusual in Jesus' teaching method.",application:"Regularly examine which type of soil you are in different areas of your life."},
+];
+
+const mirCats={all:'All',healing:'Healing',nature:'Nature',raising:'Raising the Dead',demon:'Casting Out Demons'};
+const parCats={all:'All',kingdom:'Kingdom',forgiveness:'Forgiveness',prayer:'Prayer',faithfulness:'Faithfulness',compassion:'Compassion',judgment:'Judgment',wisdom:'Wisdom',service:'Service'};
+
+const mirColors={healing:'#2C5C8A',nature:'#2E6B4F',raising:'#5B3B74',demon:'#9C3B22'};
+const parColors={kingdom:'#A9782E',forgiveness:'#8C3550',prayer:'#44417A',faithfulness:'#1F7A72',compassion:'#B5651D',judgment:'#5B5650',wisdom:'#6B7A2E',service:'#7A4A66'};
+
+let currentTab='miracles';
+let currentCat='all';
+const openSet=new Set();
+
+function getCats(){return currentTab==='miracles'?mirCats:parCats;}
+function getColors(){return currentTab==='miracles'?mirColors:parColors;}
+function getData(){return currentTab==='miracles'?MIRACLES:PARABLES;}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function truncate(s,n){return s.length>n?s.slice(0,n).trim()+'…':s;}
+function shortRef(ref){
+  const parts=ref.split(';').map(s=>s.trim());
+  if(parts.length<=1) return escapeHtml(parts[0]);
+  return `${escapeHtml(parts[0])} <span class="ref-more">+${parts.length-1} more</span>`;
+}
+
+function buildCatNav(){
+  const nav=document.getElementById('mpg-cat-nav');
+  const cats=getCats();
+  const colors=getColors();
+  nav.innerHTML='';
+  Object.entries(cats).forEach(([k,v])=>{
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='mpg-cat-btn'+(currentCat===k?' active':'');
+    btn.dataset.cat=k;
+    const color=k==='all'?'#8C7C61':(colors[k]||'#8C7C61');
+    if(currentCat===k){btn.style.background=color;}
+    btn.innerHTML=(k!=='all'?`<span class="mpg-seal" style="background:${color}"></span>`:'')+v;
+    nav.appendChild(btn);
+  });
+}
+
+function render(){
+  const q=(document.getElementById('mpg-search').value||'').toLowerCase().trim();
+  const data=getData();
+  const cats=getCats();
+  const colors=getColors();
+  const rows=data.filter(d=>{
+    const catOk=currentCat==='all'||d.cat===currentCat;
+    const qOk=!q||d.name.toLowerCase().includes(q)||d.ref.toLowerCase().includes(q)||d.lesson.toLowerCase().includes(q)||d.summary.toLowerCase().includes(q);
+    return catOk&&qOk;
+  });
+
+  document.getElementById('mpg-result-count').textContent=`${rows.length} of ${data.length}`;
+
+  const empty=document.getElementById('mpg-empty');
+  const entries=document.getElementById('mpg-entries');
+  if(rows.length===0){
+    empty.style.display='block';
+    entries.innerHTML='';
+    return;
+  }
+  empty.style.display='none';
+
+  entries.innerHTML=rows.map((d,idx)=>{
+    const color=colors[d.cat]||'#8C7C61';
+    const isOpen=openSet.has(d.sl);
+    const delay=Math.min(idx*18,260);
+    return `
+    <div class="mpg-entry-row${isOpen?' open':''}" data-sl="${d.sl}" style="--accent:${color};animation-delay:${delay}ms">
+      <button class="mpg-entry-toggle" type="button" aria-expanded="${isOpen}">
+        <span class="mpg-entry-num">${String(d.sl).padStart(2,'0')}</span>
+        <span class="mpg-entry-title">${escapeHtml(d.name)}</span>
+        <span class="mpg-entry-cat"><i class="mpg-seal" style="background:${color}"></i>${escapeHtml(cats[d.cat]||d.cat)}</span>
+        <span class="mpg-entry-ref">${shortRef(d.ref)}</span>
+        <span class="mpg-entry-summary">${escapeHtml(truncate(d.summary,95))}</span>
+        <span class="mpg-entry-chevron">⌄</span>
+      </button>
+      <div class="mpg-detail-wrap">
+        <div class="mpg-detail-inner">
+          <div class="mpg-detail">
+            <div class="mpg-d-block"><h4>Summary</h4><p>${escapeHtml(d.summary)}</p></div>
+            <div class="mpg-d-block quote"><h4>Key Verse</h4><p>${escapeHtml(d.keyVerse)}</p></div>
+            <div class="mpg-d-block"><h4>Spiritual Lesson</h4><p>${escapeHtml(d.lesson)}</p></div>
+            <div class="mpg-d-block"><h4>Historical Context</h4><p>${escapeHtml(d.context)}</p></div>
+            <div class="mpg-d-block"><h4>Practical Application</h4><p>${escapeHtml(d.application)}</p></div>
+            <div class="mpg-d-block">
+              <h4>Gospel References</h4>
+              <p class="mpg-ref-full">${escapeHtml(d.ref)}</p>
+              <button class="mpg-copy-btn" type="button">Copy reference</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleDetail(sl){
+  const row=document.querySelector(`.mpg-entry-row[data-sl="${sl}"]`);
+  if(!row) return;
+  const willOpen=!openSet.has(sl);
+  if(willOpen){openSet.add(sl);}else{openSet.delete(sl);}
+  row.classList.toggle('open',willOpen);
+  const btn=row.querySelector('.mpg-entry-toggle');
+  if(btn) btn.setAttribute('aria-expanded',String(willOpen));
+}
+
+function switchTab(tab){
+  if(tab===currentTab) return;
+  currentTab=tab;currentCat='all';openSet.clear();
+  document.querySelectorAll('.mpg-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  document.getElementById('mpg-tab-indicator').style.transform=tab==='parables'?'translateX(100%)':'translateX(0)';
+  document.getElementById('mpg-search').value='';
+  buildCatNav();
+  render();
+}
+
+document.getElementById('mpg-tabs').addEventListener('click',e=>{
+  const btn=e.target.closest('.mpg-tab');
+  if(btn) switchTab(btn.dataset.tab);
+});
+
+document.getElementById('mpg-cat-nav').addEventListener('click',e=>{
+  const btn=e.target.closest('.mpg-cat-btn');
+  if(!btn) return;
+  currentCat=btn.dataset.cat;
+  buildCatNav();
+  render();
+});
+
+document.getElementById('mpg-search').addEventListener('input',render);
+
+document.getElementById('mpg-entries').addEventListener('click',e=>{
+  const copyBtn=e.target.closest('.mpg-copy-btn');
+  if(copyBtn){
+    e.stopPropagation();
+    const row=copyBtn.closest('.mpg-entry-row');
+    const sl=Number(row.dataset.sl);
+    const d=getData().find(x=>x.sl===sl);
+    if(d && navigator.clipboard){
+      navigator.clipboard.writeText(d.ref).then(()=>{
+        const orig=copyBtn.textContent;
+        copyBtn.textContent='Copied ✓';
+        copyBtn.classList.add('copied');
+        setTimeout(()=>{copyBtn.textContent=orig;copyBtn.classList.remove('copied');},1400);
+      });
+    }
+    return;
+  }
+  const toggleBtn=e.target.closest('.mpg-entry-toggle');
+  if(toggleBtn){
+    const row=toggleBtn.closest('.mpg-entry-row');
+    toggleDetail(Number(row.dataset.sl));
+  }
+});
+
+buildCatNav();
+render();
+
+})();
+</script>
